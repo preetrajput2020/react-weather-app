@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './Weather.css'
+import React, { useEffect, useRef, useState } from 'react';
+import './Weather.css';
 import search_icon from "../assets/search.png";
 import clear_icon from "../assets/clear.png";
 import cloud_icon from "../assets/cloud.png";
@@ -10,8 +10,9 @@ import snow_icon from "../assets/snow.png";
 import wind_icon from "../assets/wind.png";
 
 const Weather = () => {
-const inputref = useRef()
-  const [weatherData, setWeatherData] = useState(null); // ✅ changed from false → null
+  const inputref = useRef();
+  const [weatherData, setWeatherData] = useState(null);
+  const [darkMode, setDarkMode] = useState(false); // 🌙 dark mode toggle
 
   const allIcons = {
     "01d": clear_icon,
@@ -30,19 +31,18 @@ const inputref = useRef()
   };
 
   const search = async (city) => {
-    if(city===""){
-        alert("Enter City Name");
-        return;
+    if (city === "") {
+      alert("Enter City Name");
+      return;
     }
     try {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_APP_ID}`;
       const response = await fetch(url);
       const data = await response.json();
-      if(!response.ok){
+      if (!response.ok) {
         alert(data.message);
         return;
       }
-      console.log(data);
       const icon = allIcons[data.weather[0].icon] || clear_icon;
       setWeatherData({
         humidity: data.main.humidity,
@@ -61,27 +61,36 @@ const inputref = useRef()
   }, []);
 
   return (
-    <div className='weather'>
+    <div className={`weather ${darkMode ? "dark-mode" : ""}`}>
+      {/* 🌙 Toggle Button */}
+      <button
+        className="toggle-mode"
+        onClick={() => setDarkMode(!darkMode)}
+        title="Toggle Dark Mode"
+      >
+        {darkMode ? "🌞" : "🌙"}
+      </button>
+
       <div className="search-bar">
-        <input ref = {inputref} type="text" placeholder='Search' />
-        <img src={search_icon} alt="" onClick={()=>search(inputref.current.value)}/>
+        <input ref={inputref} type="text" placeholder='Search' />
+        <img src={search_icon} alt="Search" onClick={() => search(inputref.current.value)} />
       </div>
 
       {weatherData && (
         <>
-          <img src={weatherData.icon} className='weather-icon' alt="" />
+          <img src={weatherData.icon} className='weather-icon' alt="Weather" />
           <p className='temp'>{weatherData.temp}° Celsius</p>
           <p className='location'>{weatherData.location}</p>
           <div className="weather-data">
             <div className="col">
-              <img src={humidity_icon} alt="" />
+              <img src={humidity_icon} alt="Humidity" />
               <div>
                 <p>{weatherData.humidity}%</p>
                 <span>Humidity</span>
               </div>
             </div>
             <div className="col">
-              <img src={wind_icon} alt="" />
+              <img src={wind_icon} alt="Wind Speed" />
               <div>
                 <p>{weatherData.windSpeed} Km/h</p>
                 <span>Wind Speed</span>

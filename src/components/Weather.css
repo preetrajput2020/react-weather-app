@@ -1,12 +1,16 @@
-.weather{
-    place-self: center;
-    padding: 40px;
-    border-radius: 10px;
-    background-image: linear-gradient(45deg,#5cb8ad,#014e3e);
-    display:flex;
+.weather {
+    min-height: 100vh; /* Full screen height */
+    width: 100%;        /* Full screen width */
+    padding: 40px 20px; /* Add side padding for small screens */
+    box-sizing: border-box;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center vertically */
+    border-radius: 0; /* Remove card rounding if you want full coverage */
+    background-image: linear-gradient(45deg, #5cb8ad, #014e3e);
 }
+
 .search-bar{
     display: flex;
     align-items: center;
@@ -62,4 +66,36 @@
 .weather-data .col img{
     width: 26px;
     margin-top: 10px;
+}
+/* Dark Mode Toggle Button */
+.toggle-mode {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* DARK MODE styles */
+.dark-mode {
+  background-image: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+}
+
+.dark-mode .search-bar input,
+.dark-mode .search-bar img {
+  background: #333;
+  color: #fff;
+}
+
+.dark-mode .temp,
+.dark-mode .location,
+.dark-mode .weather-data {
+  color: #fff;
+}
+
+.dark-mode .weather-data .col span {
+  color: #ccc;
 }
