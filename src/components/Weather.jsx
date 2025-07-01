@@ -57,7 +57,7 @@ const Weather = () => {
   };
 
   useEffect(() => {
-    search("New York");
+    search("Ghaziabad");
   }, []);
 
   return (
