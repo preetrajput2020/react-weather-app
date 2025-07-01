@@ -1,101 +1,138 @@
-.weather {
-    min-height: 100vh; /* Full screen height */
-    width: 100%;        /* Full screen width */
-    padding: 40px 20px; /* Add side padding for small screens */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center vertically */
-    border-radius: 0; /* Remove card rounding if you want full coverage */
-    background-image: linear-gradient(45deg, #5cb8ad, #014e3e);
+/* Base Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
 }
 
-.search-bar{
-    display: flex;
-    align-items: center;
-    gap:12px;
+/* Main Weather Container */
+.weather {
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  background-image: linear-gradient(45deg, #5cb8ad, #014e3e);
+  position: relative; /* for toggle button positioning */
 }
-.search-bar input{
-    height: 50px;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    padding-left: 25px;
-    color: #626262;
-    background:#ebfffc;
-    font-size: 18px;
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.search-bar img{
-    width:50px;
-    padding: 15px;
-    border-radius: 50%;
-    background-color:#ebfffc ;
-    cursor: pointer;
+.search-bar input {
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  padding-left: 25px;
+  color: #626262;
+  background: #ebfffc;
+  font-size: 18px;
 }
-.wether-icon{
-    width:150px;
-    margin: 30px 0;
+.search-bar img {
+  width: 50px;
+  padding: 15px;
+  border-radius: 50%;
+  background-color: #ebfffc;
+  cursor: pointer;
 }
-.temp{
-    color: white;
-    font-size: 80px;
-    line-height: 1;
+
+/* Weather Icon */
+.weather-icon {
+  width: 150px;
+  margin: 30px 0;
 }
-.location{
-    color: white;
-    font-size: 40px;
+
+/* Temperature & Location */
+.temp {
+  color: white;
+  font-size: 80px;
+  line-height: 1;
 }
-.weather-data{
-    width: 100%;
-    margin-top: 40px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
+.location {
+  color: white;
+  font-size: 40px;
 }
-.weather-data .col{
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 22px;
+
+/* Weather Data */
+.weather-data {
+  width: 100%;
+  margin-top: 40px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
 }
-.weather-data .col span{
-    display: block;
-    font-size: 16px;
+.weather-data .col {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 22px;
 }
-.weather-data .col img{
-    width: 26px;
-    margin-top: 10px;
+.weather-data .col span {
+  display: block;
+  font-size: 16px;
 }
-/* Dark Mode Toggle Button */
+.weather-data .col img {
+  width: 26px;
+  margin-top: 10px;
+}
+
+/* Responsive Font Sizes for Small Screens */
+@media (max-width: 480px) {
+  .temp {
+    font-size: 48px;
+  }
+  .location {
+    font-size: 28px;
+  }
+}
+
+/* Toggle Button for Dark Mode */
 .toggle-mode {
   position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 24px;
+  font-size: 22px;
   background: transparent;
-  border: none;
-  cursor: pointer;
+  border: 3px solid rgb(235, 186, 63);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.toggle-mode:hover {
+  background-color: white;
 }
 
-/* DARK MODE styles */
+/* Dark Mode Styles */
 .dark-mode {
   background-image: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
 }
-
 .dark-mode .search-bar input,
 .dark-mode .search-bar img {
   background: #333;
   color: #fff;
 }
-
 .dark-mode .temp,
 .dark-mode .location,
 .dark-mode .weather-data {
   color: #fff;
 }
-
 .dark-mode .weather-data .col span {
   color: #ccc;
 }

@@ -12,7 +12,7 @@ import wind_icon from "../assets/wind.png";
 const Weather = () => {
   const inputref = useRef();
   const [weatherData, setWeatherData] = useState(null);
-  const [darkMode, setDarkMode] = useState(false); // 🌙 dark mode toggle
+  const [darkMode, setDarkMode] = useState(false);
 
   const allIcons = {
     "01d": clear_icon,
@@ -62,7 +62,6 @@ const Weather = () => {
 
   return (
     <div className={`weather ${darkMode ? "dark-mode" : ""}`}>
-      {/* 🌙 Toggle Button */}
       <button
         className="toggle-mode"
         onClick={() => setDarkMode(!darkMode)}
@@ -78,7 +77,7 @@ const Weather = () => {
 
       {weatherData && (
         <>
-          <img src={weatherData.icon} className='weather-icon' alt="Weather" />
+          <img src={weatherData.icon} className='weather-icon' alt="Weather Icon" />
           <p className='temp'>{weatherData.temp}° Celsius</p>
           <p className='location'>{weatherData.location}</p>
           <div className="weather-data">
